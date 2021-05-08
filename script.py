@@ -57,8 +57,18 @@ pts = pd.unique(pd.Series(pts))
 
 df = pd.DataFrame({"T20": T20, "PTS": pts})
 
-def extraer_datos():
-    
+def extraer_datos(columna):
+    equipos = []
+    lista = []
+    for equipo in eq:
+        equipo = equipo.find_all("td")
+        equipos.append(equipo)
+        for equipo in equipos:
+            lista.append(equipo[columna].text)
+    lista = pd.unique(pd.Series(lista))
+    return lista
+
+print(extraer_datos(1))
     
     
 
