@@ -11,16 +11,16 @@ pos = soup.find(id = "promedios")
 eq = pos.find_all("tr", class_ = "ipr")
 eq += pos.find_all("tr", class_ = "pr")
 
-equipos = list()
+# teams name
+equipos = []
+nombres = []
 for equipo in eq:
-    equipos.append(equipo.text)
- 
-print(equipos)
+    nombre = equipo.find_all("td")
+    equipos.append(nombre)
+    for i in equipos:
+        nombres.append(i[1].text)
 
-# create dataframe
-# df = pd.DataFrame({"Nombre": equipos, "Puntajes": puntajes},
-#               index = list(range(1, 21)))
+nombres = pd.unique(pd.Series(nombres))
+    
 
-# print(df)
-
-# df.to_csv("Clasificación.csv", index = False)
+    
