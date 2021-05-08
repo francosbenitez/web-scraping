@@ -29,53 +29,10 @@ Pts = extraer_datos(4)
 PJ = extraer_datos(5)
 Prom = extraer_datos(6)    
 
-# # teams name
-# equipos = []
-# nombres = []
-# for equipo in eq:
-#     equipo = equipo.find_all("td")
-#     equipos.append(equipo)
-#     for equipo in equipos:
-#         nombres.append(equipo[1].text)
-
-# nombres = pd.unique(pd.Series(nombres))
-
-# # teams T20
-# equipos = []
-# T20 = []
-# for equipo in eq:
-#     equipo = equipo.find_all("td")
-#     equipos.append(equipo)
-#     for equipo in equipos:
-#         T20.append(equipo[2].text)
-
-# T20 = pd.unique(pd.Series(T20))
-
-# # teams T21
-# equipos = []
-# T21 = []
-# for equipo in eq:
-#     equipo = equipo.find_all("td")
-#     equipos.append(equipo)
-#     for equipo in equipos:
-#         T21.append(equipo[3].text)
-
-# T21 = pd.unique(pd.Series(T21))
-
-# # teams pts
-# equipos = []
-# pts = []
-# for equipo in eq:
-#     equipo = equipo.find_all("td")
-#     equipos.append(equipo)
-#     for equipo in equipos:
-#         pts.append(equipo[4].text)
-
-# pts = pd.unique(pd.Series(pts))
-
-# df = pd.DataFrame({"T20": T20, "PTS": pts})
-
-
-    
-
-    
+df = pd.DataFrame({'Equipos': pd.Series(equipos),
+              'T20': pd.Series(T20),
+              'T21': pd.Series(T21),
+              'Pts': pd.Series(Pts),
+              'PJ': pd.Series(PJ),
+              'Prom': pd.Series(Prom),
+              })
