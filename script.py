@@ -62,6 +62,7 @@ df = pd.DataFrame({'Equipo': pd.Series(name),
               })
 
 df = df.sort_values(by=["Prom"], ascending = False)
+df = df.reset_index(drop = True)
     
 # save df
 df.to_csv("Promiedos.csv")
