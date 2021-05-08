@@ -36,3 +36,5 @@ df = pd.DataFrame({'Equipos': pd.Series(equipos),
               'PJ': pd.Series(PJ),
               'Prom': pd.Series(Prom),
               })
+
+df.to_csv("Promiedos.csv")
