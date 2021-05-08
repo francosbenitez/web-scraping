@@ -6,7 +6,7 @@ url = "https://www.promiedos.com.ar/primera"
 page = requests.get(url)
 soup = BeautifulSoup(page.content, "html.parser")
 
-# teams
+# specific HTML to extract
 pos = soup.find(id = "promedios")
 eq = pos.find_all("tr", class_ = "ipr")
 eq += pos.find_all("tr", class_ = "pr")
