@@ -11,6 +11,7 @@ pos = soup.find(id = "promedios")
 eq = pos.find_all("tr", class_ = "ipr")
 eq += pos.find_all("tr", class_ = "pr")
 
+# function for each column
 def extraer_datos(columna):
     equipos = []
     lista = []
