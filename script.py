@@ -13,18 +13,23 @@ eq += pos.find_all("tr", class_ = "pr")
 
 # initialize lists
 nameArray = []
+name = []
 statsArray = []
 T20 = []
 T21 = []
 Pts = []
 PJ = []
 promArray = []
+prom = []
 
 # team name
 for equipo in eq:
     equipo = equipo.find_all("td")[1:2]
     lote = list(map(lambda data: str(data.text), equipo))
     nameArray.append(lote)
+
+for _ in nameArray:
+    name.append(_[0])
 
 # t20, t21, pts & pj
 for equipo in eq:
@@ -44,13 +49,16 @@ for equipo in eq:
     lote = list(map(lambda data: float(data.text), equipo))
     promArray.append(lote)
     
+for _ in promArray:
+    prom.append(_[0])
+
 # create dataframe
-df = pd.DataFrame({'Equipo': pd.Series(nameArray),
+df = pd.DataFrame({'Equipo': pd.Series(name),
               'T20': pd.Series(T20),
               'T21': pd.Series(T21),
               'Pts': pd.Series(Pts),
               'PJ': pd.Series(PJ),
-              'Prom': pd.Series(promArray),
+              'Prom': pd.Series(prom),
               })
 
 df = df.sort_values(by=["Prom"], ascending = False)
