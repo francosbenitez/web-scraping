@@ -43,9 +43,6 @@ for equipo in eq:
     equipo = equipo.find_all("td")[6:]
     lote = list(map(lambda data: float(data.text), equipo))
     promArray.append(lote)
-
-for _ in promArray:
-    promArray.append(_[0])
     
 # create dataframe
 df = pd.DataFrame({'Equipo': pd.Series(nameArray),
