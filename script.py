@@ -11,31 +11,55 @@ pos = soup.find(id = "promedios")
 eq = pos.find_all("tr", class_ = "ipr")
 eq += pos.find_all("tr", class_ = "pr")
 
-# function for each column
-def extraer_datos(columna):
-    equipos = []
-    lista = []
-    for equipo in eq:
-        equipo = equipo.find_all("td")
-        equipos.append(equipo)
-        for equipo in equipos:
-            lista.append(equipo[columna].text)
-    lista = pd.unique(pd.Series(lista))
-    return lista
+# initialize lists
+nameArray = []
+statsArray = []
+T20 = []
+T21 = []
+Pts = []
+PJ = []
+promArray = []
 
-equipos = extraer_datos(1)
-T20 = extraer_datos(2)
-T21 = extraer_datos(3)
-Pts = extraer_datos(4)
-PJ = extraer_datos(5)
-Prom = extraer_datos(6)    
+# team name
+for equipo in eq:
+    equipo = equipo.find_all("td")[1:2]
+    lote = list(map(lambda data: str(data.text), equipo))
+    nameArray.append(lote)
 
-df = pd.DataFrame({'Equipos': pd.Series(equipos),
+# t20, t21, pts & pj
+for equipo in eq:
+    equipo = equipo.find_all("td")[2:6]
+    lote = list(map(lambda data: int(data.text), equipo))
+    statsArray.append(lote)
+    
+for stat in statsArray:
+    T20.append(stat[0])
+    T21.append(stat[1])
+    Pts.append(stat[2])
+    PJ.append(stat[3])
+        
+# averages  
+for equipo in eq:
+    equipo = equipo.find_all("td")[6:]
+    lote = list(map(lambda data: float(data.text), equipo))
+    promArray.append(lote)
+
+for _ in promArray:
+    promArray.append(_[0])
+    
+# create dataframe
+df = pd.DataFrame({'Equipo': pd.Series(nameArray),
               'T20': pd.Series(T20),
               'T21': pd.Series(T21),
               'Pts': pd.Series(Pts),
               'PJ': pd.Series(PJ),
-              'Prom': pd.Series(Prom),
+              'Prom': pd.Series(promArray),
               })
 
+df = df.sort_values(by=["Prom"], ascending = False)
+    
+# save df
 df.to_csv("Promiedos.csv")
+        
+        
+        
