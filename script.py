@@ -8,18 +8,21 @@ def extract_table(table_type):
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
     pos = soup.find(id = table_type)
-    teams = [list(map(lambda data: data.text, row.find_all("td"))) for row in pos.find_all("tr", class_ = "ipr")]
-    teams += [list(map(lambda data: data.text, row.find_all("td"))) for row in pos.find_all("tr", class_ = "pr")]
+    teams = [list(map(lambda data: data.text, row.find_all("td"))) for row in pos.find_all("tr")]
     headers = next(iter([list(map(lambda data: data.text, row.find_all("th"))) for row in pos.find_all("tr")]))
     df = pd.DataFrame(teams)
     df.columns = headers
-    df = df.reset_index(drop=True)
     return df
 
 # create dataframe tables
-posiciones = extract_table("posiciones")
 promedios = extract_table("promedios")
+posiciones = extract_table("tablaseccion")
 goleadores = extract_table("goleadorest")
+
+# save dataframe tables
+promedios.to_csv("promedios.csv")
+posiciones.to_csv("posiciones.csv")
+goleadores.to_csv("goleadores.csv")
 
     
   
