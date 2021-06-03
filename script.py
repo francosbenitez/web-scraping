@@ -25,9 +25,11 @@ tabla_anual_2021 = extract_table("posiciones", class_type="tablesorter3")
 goleadores = extract_table("goleadorest")
 
 # save dataframe tables
-# promedios.to_csv("promedios.csv")
-# posiciones.to_csv("posiciones.csv")
-# goleadores.to_csv("goleadores.csv")
+posiciones_zona_1.to_csv("posiciones_zona_1.csv")
+posiciones_zona_2.to_csv("posiciones_zona_2.csv")
+promedios.to_csv("promedios.csv")
+tabla_anual_2021.to_csv("tabla_anual_2021.csv")
+goleadores.to_csv("goleadores.csv")
 
     
   
