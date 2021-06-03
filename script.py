@@ -13,16 +13,13 @@ def extract_table(table_type):
     headers = next(iter([list(map(lambda data: data.text, row.find_all("th"))) for row in pos.find_all("tr")]))
     df = pd.DataFrame(teams)
     df.columns = headers
-    df = df.sort_values(by=["#"], ascending = False)
     df = df.reset_index(drop=True)
     return df
 
 # create dataframe tables
 posiciones = extract_table("posiciones")
 promedios = extract_table("promedios")
+goleadores = extract_table("goleadorest")
 
-# save dataframe tables
-posiciones.to_csv("posiciones.csv")
-promedios.to_csv("promedios.csv")
     
   
