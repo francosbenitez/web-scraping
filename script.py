@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup  # identify dif html elements
 import requests                # load html
 import pandas as pd            # data manipulation
 
+# function to extract different tables
 def extract_table(table_type):
     url = "https://www.promiedos.com.ar/primera"
     page = requests.get(url)
@@ -15,9 +16,13 @@ def extract_table(table_type):
     df = df.sort_values(by=["#"], ascending = False)
     df = df.reset_index(drop=True)
     return df
-        
+
+# create dataframe tables
 posiciones = extract_table("posiciones")
 promedios = extract_table("promedios")
 
+# save dataframe tables
+posiciones.to_csv("posiciones.csv")
+promedios.to_csv("promedios.csv")
     
   
